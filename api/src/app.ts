@@ -1,6 +1,6 @@
 import express from "express";
 const cors = require("cors");
-import tasksRouter from "./routes/tasks";
+import tasksRoutes from "./routes/tasks";
 
 const app = express();
 const port = 3000;
@@ -16,8 +16,8 @@ app.use(
   express.json()
 );
 
-// Defined all of our routes in the tasks router
-app.use("/api", tasksRouter);
+// Defined all of our routes
+app.use("/api", tasksRoutes);
 
 // Logging to let you know the backend is up
 app.listen(port, () => {
