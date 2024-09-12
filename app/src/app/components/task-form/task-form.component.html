@@ -1,0 +1,19 @@
+<form [formGroup]="taskForm">
+  <mat-form-field>
+    <mat-label>Task Title</mat-label>
+    <input
+      matInput
+      placeholder="Enter Text..."
+      [formControl]="title"
+      required
+    />
+    <mat-error *ngIf="title.hasError('required')">
+      Please enter a title.
+    </mat-error>
+  </mat-form-field>
+</form>
+
+<div>
+  <button mat-stroked-button (click)="cancel.emit()">Cancel</button>
+  <button mat-flat-button (click)="saveTask()">Save</button>
+</div>

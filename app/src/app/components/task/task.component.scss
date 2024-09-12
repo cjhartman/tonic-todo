@@ -1,0 +1,10 @@
+:host {
+  padding-bottom: 10px;
+
+  .task-content,
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

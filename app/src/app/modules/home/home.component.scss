@@ -1,0 +1,15 @@
+.task-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.no-tasks {
+  display: flex;
+  justify-content: center;
+}

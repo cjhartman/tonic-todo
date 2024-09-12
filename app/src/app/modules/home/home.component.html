@@ -1,0 +1,17 @@
+<div class="task-list-header">
+  <h2>Tasks</h2>
+</div>
+
+<div class="task-list">
+  <!-- Create a new task -->
+  <app-new-task></app-new-task>
+
+  <!-- Loop through our list of tasks-->
+  <ng-container *ngIf="(tasks$ | async)?.length; else noTasks">
+    <app-task *ngFor="let task of tasks$ | async" [task]="task"></app-task>
+  </ng-container>
+
+  <ng-template #noTasks>
+    <h3 class="no-tasks">There are no tasks to display.</h3>
+  </ng-template>
+</div>

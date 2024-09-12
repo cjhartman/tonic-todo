@@ -1,0 +1,39 @@
+<!-- Alternates between our saved tasks and the edit mode of tasks -->
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <ng-container *ngIf="!isEditMode; else editMode">
+      <!-- Saved task content -->
+      <div class="task-content">
+        <div>
+          <mat-checkbox
+            [formControl]="completedAt"
+            (change)="toggleCompleteTask(task)"
+          ></mat-checkbox>
+          <p>{{ task.title }}</p>
+        </div>
+
+        <div>
+          <button
+            mat-icon-button
+            aria-label="Edit the title"
+            (click)="editTask()"
+          >
+            <mat-icon>edit_note</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            aria-label="Delete the task"
+            (click)="deleteTask(task.id)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #editMode>
+      <!-- Upsertable task Content -->
+      <app-task-form (cancel)="editTask()" [task]="task"></app-task-form>
+    </ng-template>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,16 @@
+<!-- Add new task form and some extra styling to differentiate between saved tasks -->
+<ng-container *ngIf="isAddNewTask; else addNewTask">
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <app-task-form (cancel)="isAddNewTask = false"></app-task-form>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
+
+<!-- Add new task button that should display only when we aren't creating a task -->
+<ng-template #addNewTask>
+  <button mat-stroked-button (click)="isAddNewTask = true">
+    <mat-icon>add</mat-icon>
+    Add Task
+  </button>
+</ng-template>
