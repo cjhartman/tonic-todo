@@ -1,4 +1,4 @@
-import { State, Selector, Action, StateContext } from '@ngxs/store';
+import { State, Action, StateContext } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { Task } from '../models/task';
 import { TaskService } from '../services/task.service';
@@ -21,13 +21,8 @@ export interface TodoListStateModel {
   },
 })
 @Injectable()
-export class TaskState {
+export class TodoListState {
   constructor(private taskService: TaskService) {}
-
-  @Selector()
-  static getTasks(state: TodoListStateModel): Task[] {
-    return state.tasks;
-  }
 
   @Action(LoadTasks)
   loadTasks(ctx: StateContext<TodoListStateModel>): Observable<Task[]> {

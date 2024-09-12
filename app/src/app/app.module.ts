@@ -9,14 +9,14 @@ import { provideHttpClient } from '@angular/common/http';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
-import { TaskState } from './store/todo-list.state';
+import { TodoListState } from './store/todo-list.state';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxsModule.forRoot([TaskState]),
+    NgxsModule.forRoot([TodoListState]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
   ],

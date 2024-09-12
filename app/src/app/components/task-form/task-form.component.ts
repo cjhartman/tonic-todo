@@ -8,6 +8,8 @@ import {
 import { Task } from '../../models/task';
 import { TaskService } from '../../services/task.service';
 import { tap } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { AddTask, UpdateTask } from '../../store/todo-list.actions';
 
 @Component({
   selector: 'app-task-form',
@@ -19,7 +21,7 @@ export class TaskFormComponent implements OnInit {
   @Output() cancel = new EventEmitter<Task>();
   taskForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private taskService: TaskService) {}
+  constructor(private fb: FormBuilder, private store: Store) {}
 
   ngOnInit(): void {
     this.taskForm = this.fb.group({
@@ -40,17 +42,17 @@ export class TaskFormComponent implements OnInit {
       return;
     }
 
-    let apiCall;
+    let upsertStoreAction;
 
-    console.log(this.taskForm.value);
-
-    if (this.task.id) {
-      apiCall = this.taskService.updateTask(this.taskForm.value);
+    if (this.task?.id) {
+      upsertStoreAction = this.store.dispatch(
+        new UpdateTask(this.taskForm.value)
+      );
     } else {
-      apiCall = this.taskService.createTask(this.taskForm.value);
+      upsertStoreAction = this.store.dispatch(new AddTask(this.taskForm.value));
     }
 
-    apiCall.pipe(tap(() => this.cancel.emit())).subscribe();
+    upsertStoreAction.pipe(tap(() => this.cancel.emit())).subscribe();
   }
 
   get title() {

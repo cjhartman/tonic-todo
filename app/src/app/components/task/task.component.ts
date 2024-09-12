@@ -1,7 +1,9 @@
-import { Component, Input, model, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Task } from '../../models/task';
 import { TaskService } from '../../services/task.service';
 import { FormControl } from '@angular/forms';
+import { Store, UpdateState } from '@ngxs/store';
+import { DeleteTask, UpdateTask } from '../../store/todo-list.actions';
 
 @Component({
   selector: 'app-task',
@@ -14,7 +16,7 @@ export class TaskComponent implements OnInit {
 
   completedAt = new FormControl();
 
-  constructor(private taskService: TaskService) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     if (this.task.completedAt)
@@ -26,12 +28,12 @@ export class TaskComponent implements OnInit {
   }
 
   deleteTask(taskId: number) {
-    this.taskService.deleteTask(taskId).subscribe();
+    this.store.dispatch(new DeleteTask(taskId)).subscribe();
   }
 
   toggleCompleteTask(task: Task) {
     task = { ...task, completedAt: this.completedAt.value ? new Date() : null };
 
-    this.taskService.updateTask(task).subscribe();
+    this.store.dispatch(new UpdateTask(task)).subscribe();
   }
 }
