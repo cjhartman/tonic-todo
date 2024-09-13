@@ -2,12 +2,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Task } from '../models/task';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
-  private apiUrl = 'http://localhost:3000/api/tasks';
+  private apiUrl = `${environment.apiUrl}/tasks`;
 
   // Specifies our content type pf json for creating/updating tasks
   private httpOptions = {

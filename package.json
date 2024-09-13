@@ -3,12 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start:api": "npm --prefix ./api run start",
-    "start:app": "npm --prefix ./app run start",
-    "build:api": "npm --prefix ./api run build",
-    "build:app": "npm --prefix ./app run build",
-    "test:api": "npm --prefix ./api run test",
-    "test:app": "npm --prefix ./app run test"
+    "start:api": "npm --prefix ./api run dev",
+    "start:app": "npm --prefix ./app run start"
   },
   "keywords": [],
   "author": "",
