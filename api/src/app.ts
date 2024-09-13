@@ -1,16 +1,18 @@
 import express from "express";
 const cors = require("cors");
-import tasksRoutes from "./routes/tasks";
+// import tasksRoutes from "./routes/tasks"; I would use this if we had a mysqldb
 import mockTaskRoutes from "./routes/mock-db-tasks";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Need this to allow CORS stuff
 // Also need express.json to allow json post, patch payload
 app.use(
   cors({
-    origin: "http://localhost:4200", // Replace with your Angular app's URL
+    origin: process.env.FRONTEND_URL || "http://localhost:4200",
     methods: ["GET", "POST", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type"],
   }),
