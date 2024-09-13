@@ -1,6 +1,7 @@
 import express from "express";
 const cors = require("cors");
 import tasksRoutes from "./routes/tasks";
+import mockTaskRoutes from "./routes/mock-db-tasks";
 
 const app = express();
 const port = 3000;
@@ -17,7 +18,10 @@ app.use(
 );
 
 // Defined all of our routes
-app.use("/api", tasksRoutes);
+// This would be used if the user had a local mysql instance and a tonic db with a tasks table
+// app.use("/api", tasksRoutes);
+
+app.use("/api", mockTaskRoutes);
 
 // Logging to let you know the backend is up
 app.listen(port, () => {

@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Task } from '../../models/task';
-import { TaskService } from '../../services/task.service';
 import { FormControl } from '@angular/forms';
-import { Store, UpdateState } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { DeleteTask, UpdateTask } from '../../store/todo-list.actions';
 
 @Component({
