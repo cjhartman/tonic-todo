@@ -3,8 +3,6 @@ const cors = require("cors");
 // import tasksRoutes from "./routes/tasks"; I would use this if we had a mysqldb
 import mockTaskRoutes from "./routes/mock-db-tasks";
 import dotenv from "dotenv";
-dotenv.config({ path: ".env.local" });
-dotenv.config();
 
 const app = express();
 if (process.env.NODE_ENV !== "production") {
@@ -19,7 +17,7 @@ const port = process.env.PORT || 3000;
 // Also need express.json to allow json post, patch payload
 app.use(
   cors({
-    origin: "http://localhost:4200",
+    origin: process.env.FRONTEND_URL || "http://localhost:4200",
     methods: ["GET", "POST", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type"],
   }),
